@@ -89,7 +89,7 @@ echo -e "   / /\ \  | '__|/ __|| '_ \  | |     | || '_ \ | | | |\ \/ /" >> /etc/
 echo -e "  / ____ \ | |  | (__ | | | | | |____ | || | | || |_| | >  < " >> /etc/motd
 echo -e " /_/    \_\|_|   \___||_| |_| |______||_||_| |_| \__,_|/_/\_\ " >> /etc/motd
 
-if [ ! -e /etc/systemd/system/getty\@tty1.service. ]
+if [ ! -e /etc/systemd/system/getty\@tty1.service.d ]
 then
 	mkdir /etc/systemd/system/getty\@tty1.service.d
 fi
