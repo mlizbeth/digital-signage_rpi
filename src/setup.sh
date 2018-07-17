@@ -1,5 +1,9 @@
 #!/bin/bash
 #TODO install rise automatically + clamav sigs
+pacman-key --init
+wait $PID
+pacman-key --populate archlinuxarm
+wait $PID
 pacman -Syyu thunar file-roller libconfig gconf xorg xorg-xinit xorg-apps xorg-server xorg-xclock xorg-twm xterm xfce4-terminal packer openbox obmenu obconf chromium base-devel git wget openssh xf86-video-fbdev clamav ntp nano qt5-base --needed --noconfirm &
 wait $PID
 
