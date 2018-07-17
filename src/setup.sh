@@ -6,7 +6,7 @@ pacman-key --populate archlinuxarm
 wait $PID
 pacman -Rs pkgconf --noconfirm
 wait $PID
-pacman -Syyu pkg-config thunar file-roller libconfig gconf xorg xorg-xinit xorg-apps xorg-server xorg-xclock xorg-twm xterm xfce4-terminal packer openbox obmenu obconf chromium base-devel git wget openssh xf86-video-fbdev clamav ntp nano qt5-base --needed --noconfirm &
+pacman -Syyu thunar file-roller libconfig gconf xorg xorg-xinit xorg-apps xorg-server xorg-xclock xorg-twm xterm xfce4-terminal packer openbox obmenu obconf chromium base-devel git wget openssh xf86-video-fbdev clamav ntp nano qt5-base --needed --noconfirm &
 wait $PID
 
 timedatectl set-ntp true
@@ -38,30 +38,27 @@ then
 	mkdir /home/$duser/.config/openbox
 fi
 
-if [ -e /home/$duser/.config/openbox/autostart ]
+mv menu.xml /home/$duser/.config/openbox
+
+if [ ! -e /home/$duser/.config/openbox/autostart ]
 then
-	echo -e "xset s off\nxset s noblank\nxset -dpms\nsetxkbmap -option terminate:ctrl_alt_bksp" > /home/$duser/.config/openbox/autostart
-else
 	touch /home/$duser/.config/openbox/autostart
+else
 	echo -e "xset s off\nxset s noblank\nxset -dpms\nsetxkbmap -option terminate:ctrl_alt_bksp" > /home/$duser/.config/openbox/autostart
-	mv menu.xml /home/$duser/.config/openbox
 fi
 
-if [ -e /home/$duser/.xinitrc ]
+if [ ! -e /home/$duser/.xinitrc ]
 then
-	echo "exec openbox-session" > /home/$duser/.xinitrc
-else
 	touch /home/$duser/.xinitrc
+	
+else
 	echo "exec openbox-session" > /home/$duser/.xinitrc
 fi
 
-if [ -e /home/$duser/.bash_profile ]
+if [ ! -e /home/$duser/.bash_profile ]
 then
-	#echo "[[ -z $DISPLAY && XDG_VTNR -eq 1 ]] && startx -- -nocursor" > /home/$duser/.bash_profile
-	echo "startx -- -nocursor" > /home/$duser/.bash_profile
-else
 	touch /home/$duser/.bash_profile
-	#echo "[[ -z $DISPLAY && XDG_VTNR -eq 1 ]] && startx -- -nocursor" > /home/$duser/.bash_profile
+else
 	echo "startx -- -nocursor" > /home/$duser/.bash_profile
 fi
 
@@ -108,6 +105,7 @@ wait $PID
 systemctl enable clamav-freshclam.service
 systemctl enable clamav-daemon.service
 
+touch /etc/clamav/detected.sh
 mv detected.sh /etc/clamav/
 sed -i '/ScanOnAccess yes/s/^#//' /etc/clamav/clamd.conf
 sed -i '/OnAccessMountPath \//s/^#//' /etc/clamav/clamd.conf
