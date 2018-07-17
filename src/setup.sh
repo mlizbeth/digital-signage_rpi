@@ -89,14 +89,14 @@ echo -e "   / /\ \  | '__|/ __|| '_ \  | |     | || '_ \ | | | |\ \/ /" >> /etc/
 echo -e "  / ____ \ | |  | (__ | | | | | |____ | || | | || |_| | >  < " >> /etc/motd
 echo -e " /_/    \_\|_|   \___||_| |_| |______||_||_| |_| \__,_|/_/\_\ " >> /etc/motd
 
-if [ ! -e /etc/systemd/system/getty\@tty1.service.d]
+if [ ! -e /etc/systemd/system/getty\@tty1.service. ]
 then
 	mkdir /etc/systemd/system/getty\@tty1.service.d
 fi
 
-if [ ! -e /etc/systemd/system/getty\@tty1/service.d/override.conf]
+if [ ! -e /etc/systemd/system/getty\@tty1/service.d/override.conf ]
 then
-	touch /etc/systemd/system/getty@tty1.service.d/override.conf
+	touch /etc/systemd/system/getty\@tty1.service.d/override.conf
 fi
 echo -e '[Service]\nExecStart=\nExecStart=-/sbin/agetty -a '$duser' --noclear %I $TERM' > /etc/systemd/system/getty@tty1.service.d/override.conf
 
