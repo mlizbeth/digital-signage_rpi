@@ -1,5 +1,9 @@
 #!/bin/bash
 #TODO install rise automatically + clamav sigs
+pacman-key --init
+wait $PID
+pacman-key --populate archlinuxarm
+wait $PID
 pacman -Syyu thunar file-roller libconfig gconf xorg xorg-xinit xorg-apps xorg-server xorg-xclock xorg-twm xterm xfce4-terminal packer openbox obmenu obconf chromium base-devel git wget openssh xf86-video-fbdev clamav ntp nano qt5-base --needed --noconfirm &
 wait $PID
 
@@ -91,6 +95,7 @@ then
 fi
 
 if [ ! -e /etc/systemd/system/getty\@tty1/service.d/override.conf]
+then
 	touch /etc/systemd/system/getty@tty1.service.d/override.conf
 fi
 echo -e '[Service]\nExecStart=\nExecStart=-/sbin/agetty -a '$duser' --noclear %I $TERM' > /etc/systemd/system/getty@tty1.service.d/override.conf
