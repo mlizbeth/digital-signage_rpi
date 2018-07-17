@@ -65,10 +65,6 @@ else
 	echo "startx -- -nocursor" > /home/$duser/.bash_profile
 fi
 
-#add auto-install commands into user's .bash_profile and then just rewrite it
-#for what is actually needed
-
-
 cd /home/$duser
 git clone https://aur.archlinux.org/package-query.git
 git clone https://aur.archlinux.org/yaourt.git
@@ -112,7 +108,6 @@ wait $PID
 systemctl enable clamav-freshclam.service
 systemctl enable clamav-daemon.service
 
-touch /etc/clamav/detected.sh
 mv detected.sh /etc/clamav/
 sed -i '/ScanOnAccess yes/s/^#//' /etc/clamav/clamd.conf
 sed -i '/OnAccessMountPath \//s/^#//' /etc/clamav/clamd.conf
