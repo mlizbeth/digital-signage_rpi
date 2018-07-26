@@ -9,6 +9,7 @@ wait $PID
 pacman -Syyu pkg-config thunar file-roller libconfig gconf xorg xorg-xinit xorg-apps xorg-server xorg-xclock xorg-twm xterm xfce4-terminal packer openbox obmenu obconf chromium base-devel git wget openssh xf86-video-fbdev clamav ntp nano qt5-base --needed --noconfirm &
 wait $PID
 
+
 timedatectl set-ntp true
 ln -sf /usr/share/zoneinfo/America/Chicago > /etc/localtime
 #hwclock --systohc
@@ -51,7 +52,7 @@ if [ ! -e /home/$duser/.xinitrc ]
 then
 	touch /home/$duser/.xinitrc
 else
-	echo "exec openbox-session" > /home/$duser/.xinitrc
+	echo -e "exec openbox-session" > /home/$duser/.xinitrc
 fi
 
 if [ ! -e /home/$duser/.bash_profile ]
@@ -104,7 +105,6 @@ wait $PID
 systemctl enable clamav-freshclam.service
 systemctl enable clamav-daemon.service
 
-touch /etc/clamav/detected.sh
 mv detected.sh /etc/clamav/
 sed -i '/ScanOnAccess yes/s/^#//' /etc/clamav/clamd.conf
 sed -i '/OnAccessMountPath \//s/^#//' /etc/clamav/clamd.conf
@@ -117,3 +117,9 @@ sed -i 's/#Port 22/Port 13337/' /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 sed -i 's/#MaxSessions 10/MaxSessions 2/' /etc/ssh/sshd_config
+
+sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
+sed -i 's/disable_overscan=1/#disable_overscan=1' /boot/config.txt
+systemctl enable sshd
+systemctl start sshd
+
