@@ -34,8 +34,6 @@ else
 fi
 
 cd /home/pi
-git clone https://aur.archlinux.org/package-query.git
-git clone https://aur.archlinux.org/yaourt.git
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
 
