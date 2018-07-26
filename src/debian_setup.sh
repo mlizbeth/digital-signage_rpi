@@ -1,3 +1,7 @@
+#####################################
+YOU MUST RUN THROUGH SUDO
+#####################################
+apt update
 DEBIAN_FRONTEND=noninteractive apt install -y clamav gufw xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
 wait $PID
 if [ ! -e /home/pi/.config ]
