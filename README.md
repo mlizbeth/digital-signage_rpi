@@ -3,9 +3,9 @@ Auto configuration tools for deploying raspberry pis to be used as digital signa
 Feel free to use my work anyway you like. Be sure you link back to me & ukscone as this repo 
 utilizes his overscan tool.
 # Operating Systems
-Currently only support for 
-## Arch Linux ARM
-## Raspbian
+Currently only support for:
+### Arch Linux ARM
+### Raspbian
 
 # Notes about Rise Vision
 It is not officially supported on anything other than Raspbian (sadly).
