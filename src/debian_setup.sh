@@ -1,5 +1,5 @@
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y clamav gufw xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
+DEBIAN_FRONTEND=noninteractive apt install -y file-roller thunar gvfs clamav gufw xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
 wait $PID
 if [ ! -e /home/pi/.config ]
 then
@@ -11,6 +11,7 @@ then
 	mkdir /home/pi/.config/openbox
 fi
 
+sed -i 's/chromium/chromium-browser/' menu.xml
 mv menu.xml /home/pi/.config/openbox
 
 if [ ! -e /home/pi/.config/openbox/autostart ]
