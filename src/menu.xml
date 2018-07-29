@@ -20,8 +20,9 @@
 			</action>
 		</item>
 	
-		
+			
 	</menu>
+	#broken on raspbian.
 	<menu id="obConfig" label="System">
 		<item label="Shutdown">
 			<action name=systemctl poweroff/>
