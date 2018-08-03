@@ -17,23 +17,23 @@ mv menu.xml /home/pi/.config/openbox
 if [ ! -e /home/pi/.config/openbox/autostart ]
 then
 	touch /home/pi/.config/openbox/autostart
-else
-	echo "xset s off\nxset s noblank\nxset -dpms\nsetxkbmap -option terminate:ctrl_alt_bksp" > /home/pi/.config/openbox/autostart
 fi
+echo "xset s off\nxset s noblank\nxset -dpms\nsetxkbmap -option terminate:ctrl_alt_bksp" > /home/pi/.config/openbox/autostart
+
 
 if [ ! -e /home/pi/.xinitrc ]
 then
 	touch /home/pi/.xinitrc
-else
-	echo "exec openbox-session" > /home/pi/.xinitrc
 fi
+echo "exec openbox-session" > /home/pi/.xinitrc
+
 
 if [ ! -e /home/pi/.bash_profile ]
 then
 	touch /home/pi/.bash_profile
-else
-	echo "startx -- -nocursor" > /home/pi/.bash_profile
 fi
+echo "startx -- -nocursor" > /home/pi/.bash_profile
+
 
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
