@@ -39,14 +39,14 @@ cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
 
-echo -e "  _______     _         _  _          " > /etc/issue
-echo -e " |__   __|   (_)       (_)| |         " >> /etc/issue
-echo -e "    | | _ __  _  _ __   _ | |_  _   _ " >> /etc/issue
-echo -e "    | || '__|| || '_ \ | || __|| | | |" >> /etc/issue
-echo -e "    | || |   | || | | || || |_ | |_| |" >> /etc/issue
-echo -e "    |_||_|   |_||_| |_||_| \__| \__, |" >> /etc/issue
-echo -e "                                 __/ |" >> /etc/issue
-echo -e "                                |___/ " >> /etc/issue
+echo "  _______     _         _  _          " > /etc/issue
+echo " |__   __|   (_)       (_)| |         " >> /etc/issue
+echo "    | | _ __  _  _ __   _ | |_  _   _ " >> /etc/issue
+echo "    | || '__|| || '_ \ | || __|| | | |" >> /etc/issue
+echo "    | || |   | || | | || || |_ | |_| |" >> /etc/issue
+echo "    |_||_|   |_||_| |_||_| \__| \__, |" >> /etc/issue
+echo "                                 __/ |" >> /etc/issue
+echo "                                |___/ " >> /etc/issue
 
 echo "______ ___________ _____  ___   _   _ " > /etc/motd
 echo "|  _  \  ___| ___ \_   _|/ _ \ | \ | |" >> /etc/motd
