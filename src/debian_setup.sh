@@ -1,5 +1,5 @@
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -y libgconf-2-4 file-roller thunar gvfs clamav gufw x11-xserver-utils xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
+DEBIAN_FRONTEND=noninteractive apt install -y libgconf-2-4 file-roller thunar gvfs clamav gufw xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
 wait $PID
 if [ ! -e /home/pi/.config ]
 then
