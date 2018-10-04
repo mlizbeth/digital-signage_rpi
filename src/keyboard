@@ -1,0 +1,10 @@
+# KEYBOARD CONFIGURATION FILE
+# Consult the keyboard(5) manual page
+# Trinity University 10/4/18
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS=""
+
+BACKSPACE="guess"
