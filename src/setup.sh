@@ -43,6 +43,10 @@ then
 	touch /home/pi/.bash_profile
 fi
 echo "startx #-- -nocursor" > /home/pi/.bash_profile
+touch /home/pi/restart.sh
+echo "reboot now" > /home/pi/restart.sh
+chmod +x /home/pi/restart.sh
+(crontab -l ; echo "0 6 * * * /home/pi/restart.sh") 2>&1 | grep -v "no crontab" | sort | uniq | crontab -
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
