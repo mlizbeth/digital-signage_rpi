@@ -14,7 +14,7 @@ mv wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
 apt update & 
 wait $PID
-DEBIAN_FRONTEND=noninteractive apt install gufw clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev #lxdm lxde
+DEBIAN_FRONTEND=noninteractive apt install -y gufw clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev #lxdm lxde
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
