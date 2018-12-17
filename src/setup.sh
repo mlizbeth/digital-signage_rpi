@@ -1,4 +1,6 @@
-ln -sf /usr/share/zoneinfo/America/Chicago > /etc/localtime
+#Rise doesn't disable the cursor.
+#!/bin/bash
+ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 sed -i '/en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
 locale-gen &
 wait $PID
@@ -10,46 +12,13 @@ echo $loc > /etc/hostname
 mv keyboard /etc/default/keyboard
 mv wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
-apt update
-DEBIAN_FRONTEND=noninteractive apt install -y libgconf-2-4 file-roller thunar gvfs clamav gufw xorg xserver-xorg xserver-xorg-video-fbdev openbox openbox-menu openbox-themes obconf-qt xfce4-terminal chromium-browser &
+apt update & 
 wait $PID
-if [ ! -e /home/pi/.config ]
-then
-	mkdir /home/pi/.config
-fi
-
-if [ ! -e /home/pi/.config/openbox ]
-then
-	mkdir /home/pi/.config/openbox
-fi
-
-sed -i 's/chromium/chromium-browser/' menu.xml
-mv menu.xml /home/pi/.config/openbox
-
-if [ ! -e /home/pi/.config/openbox/autostart ]
-then
-	touch /home/pi/.config/openbox/autostart
-fi
-echo "xset s off\nxset s noblank\nxset -dpms\nsetxkbmap -option terminate:ctrl_alt_bksp" > /home/pi/.config/openbox/autostart
-
-if [ ! -e /home/pi/.xinitrc ]
-then
-	touch /home/pi/.xinitrc
-fi
-echo "exec openbox-session" > /home/pi/.xinitrc
-
-if [ ! -e /home/pi/.bash_profile ]
-then
-	touch /home/pi/.bash_profile
-fi
-echo "startx #-- -nocursor" > /home/pi/.bash_profile
-touch /home/pi/restart.sh
-echo "reboot now" > /home/pi/restart.sh
-chmod +x /home/pi/restart.sh
-(crontab -l ; echo "0 6 * * * /home/pi/restart.sh") 2>&1 | grep -v "no crontab" | sort | uniq | crontab -
+DEBIAN_FRONTEND=noninteractive apt install gufw clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev #lxdm lxde
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
+echo "startx #-- -nocursor" > /home/pi/.bash_profile
 echo "  _______     _         _  _          " > /etc/issue
 echo " |__   __|   (_)       (_)| |         " >> /etc/issue
 echo "    | | _ __  _  _ __   _ | |_  _   _ " >> /etc/issue
@@ -64,17 +33,21 @@ echo "| | | | |__ | |_/ / | | / /_\ \|  \| |" >> /etc/motd
 echo "| | | |  __|| ___ \ | | |  _  || . \ |" >> /etc/motd
 echo "| |/ /| |___| |_/ /_| |_| | | || |\  |" >> /etc/motd
 echo "|___/ \____/\____/ \___/\_| |_/\_| \_/" >> /etc/motd
-
-if [ ! -e /etc/systemd/system/getty\@tty1.service.d ]
+if [ ! -e /home/pi/.bash_profile ]
 then
-	mkdir /etc/systemd/system/getty\@tty1.service.d
+	touch /home/pi/.bash_profile
 fi
-
-if [ ! -e /etc/systemd/system/getty\@tty1/service.d/override.conf ]
-then
-	touch /etc/systemd/system/getty\@tty1.service.d/override.conf
-fi
-echo '[Service]\nExecStart=\nExecStart=-/sbin/agetty -a pi --noclear %I $TERM' > /etc/systemd/system/getty@tty1.service.d/override.conf
+echo "startx #-- -nocursor" > /home/pi/.bash_profile
+#In testing this didn't seem to work with the above packages.
+# if [ ! -e /etc/systemd/system/getty\@tty1.service.d ]
+# then
+# 	mkdir /etc/systemd/system/getty\@tty1.service.d
+# fi
+# if [ ! -e /etc/systemd/system/getty\@tty1/service.d/override.conf ]
+# then
+# 	touch /etc/systemd/system/getty\@tty1.service.d/override.conf
+# fi
+# echo '[Service]\nExecStart=\nExecStart=-/sbin/agetty -a pi --noclear %I $TERM' > /etc/systemd/system/getty@tty1.service.d/override.conf
 chown -R pi:users /home/pi
 sed -i 's/#Port 22/Port 13337/' /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
