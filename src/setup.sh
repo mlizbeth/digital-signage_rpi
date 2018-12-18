@@ -4,7 +4,6 @@ ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 sed -i '/en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
 locale-gen &
 wait $PID
-echo "Enter a new password"
 passwd
 echo "Enter the location for this device"
 read loc
@@ -14,11 +13,10 @@ mv wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
 apt update & 
 wait $PID
-DEBIAN_FRONTEND=noninteractive apt install -y gufw clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev #lxdm lxde
+DEBIAN_FRONTEND=noninteractive apt install -y gufw unclutter xscreensaver clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev #lxdm lxde
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
-echo "startx #-- -nocursor" > /home/pi/.bash_profile
 echo "  _______     _         _  _          " > /etc/issue
 echo " |__   __|   (_)       (_)| |         " >> /etc/issue
 echo "    | | _ __  _  _ __   _ | |_  _   _ " >> /etc/issue
@@ -33,11 +31,11 @@ echo "| | | | |__ | |_/ / | | / /_\ \|  \| |" >> /etc/motd
 echo "| | | |  __|| ___ \ | | |  _  || . \ |" >> /etc/motd
 echo "| |/ /| |___| |_/ /_| |_| | | || |\  |" >> /etc/motd
 echo "|___/ \____/\____/ \___/\_| |_/\_| \_/" >> /etc/motd
-if [ ! -e /home/pi/.bash_profile ]
-then
-	touch /home/pi/.bash_profile
-fi
-echo "startx #-- -nocursor" > /home/pi/.bash_profile
+#if [ ! -e /home/pi/.bash_profile ]
+#then
+#	touch /home/pi/.bash_profile
+#fi
+#echo "startx #-- -nocursor" > /home/pi/.bash_profile
 #In testing this didn't seem to work with the above packages.
 # if [ ! -e /etc/systemd/system/getty\@tty1.service.d ]
 # then
