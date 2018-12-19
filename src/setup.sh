@@ -52,7 +52,7 @@ sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 sed -i 's/#MaxSessions 10/MaxSessions 2/' /etc/ssh/sshd_config
 sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
-sed -i 's/disable_overscan=1/#disable_overscan=1' /boot/config.txt
+sed -i 's/disable_overscan=1/#disable_overscan=1/' /boot/config.txt
 systemctl enable ssh
 systemctl start ssh
 systemctl enable vncserver-x11-serviced
