@@ -58,3 +58,4 @@ systemctl enable ssh
 systemctl start ssh
 systemctl enable vncserver-x11-serviced
 systemctl start vncserver-x11-serviced
+pcmanfm --set-wallpaper ~/pi-signage/src/bg.jpg
