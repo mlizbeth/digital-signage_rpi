@@ -4,7 +4,6 @@ ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 sed -i '/en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
 locale-gen &
 wait $PID
-passwd
 echo "Enter the location for this device"
 read loc
 echo $loc > /etc/hostname
@@ -58,4 +57,4 @@ systemctl enable ssh
 systemctl start ssh
 systemctl enable vncserver-x11-serviced
 systemctl start vncserver-x11-serviced
-pcmanfm --set-wallpaper ~/pi-signage/src/bg.jpg
+#pcmanfm --set-wallpaper ~/pi-signage/src/bg.jpg #only works if x server has been started
