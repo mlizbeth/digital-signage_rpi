@@ -12,8 +12,8 @@ mv wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt
 apt update & 
 wait $PID
-DEBIAN_FRONTEND=noninteractive apt install -y gufw realvnc-vnc-server unclutter xscreensaver clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev & 
-wait $PID
+#DEBIAN_FRONTEND=noninteractive apt install -y gufw realvnc-vnc-server unclutter xscreensaver clamav raspberrypi-ui-mods rpi-chromium-mods file-roller xorg xserver-xorg xserver-xorg-video-fbdev & 
+#wait $PID
 cd /home/pi
 wget install-versions.risevision.com/installer-lnx-armv7l.sh
 chmod +x installer-lnx-armv7l.sh
@@ -57,4 +57,4 @@ systemctl enable ssh
 systemctl start ssh
 systemctl enable vncserver-x11-serviced
 systemctl start vncserver-x11-serviced
-#pcmanfm --set-wallpaper ~/pi-signage/src/bg.jpg #only works if x server has been started
+pcmanfm --set-wallpaper ~/pi-signage/src/bg.jpg #only works if x server has been started
